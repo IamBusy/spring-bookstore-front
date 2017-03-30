@@ -1,0 +1,23 @@
+{
+  "entry": "src/index.js",
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime"
+      ]
+    }
+  },
+  proxy: {
+    '/api': {
+      target: 'https://other-server.example.com',
+      secure: false
+    }
+  }
+}

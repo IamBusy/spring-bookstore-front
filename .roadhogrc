@@ -14,10 +14,10 @@
       ]
     }
   },
-  proxy: {
-    '/api': {
-      target: 'https://other-server.example.com',
-      secure: false
+  "proxy": {
+    "/api": {
+      "target": "https://other-server.example.com",
+      "secure": false
     }
   }
 }

@@ -1,4 +1,5 @@
 import fetch from 'dva/fetch';
+import auth from './auth';
 
 function parseJSON(response) {
   return response.json();

@@ -21,7 +21,7 @@ class Category extends React.Component {
             <div style={{ backgroundColor: '#6e6568' }}>
                 {
                     this.props.categoryList.map((category) => (
-                        <li onClick={this.onchange(category)}>category.name</li>
+                        <li key={category.name} onClick={()=>this.onchange(category)}>category.name</li>
                     ))
                 }
             </div>

@@ -5,7 +5,7 @@ export default {
     current:null,
   },
   reducers: {
-    chose(state){
+    chose(state,action){
       
     }
   },

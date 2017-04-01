@@ -5,7 +5,7 @@ import './index.css';
 // 1. Initialize
 const app = dva();
 
-app.model({
+/*app.model({
     namespace: 'count',
     state: {
         current:0,
@@ -71,22 +71,22 @@ app.router(({history}) =>
 
 
 
+app.start('#root');*/
+
+
+
+
+
+app.model(require("./models/category"));
+
+// 2. Plugins
+// app.use({});
+
+// 3. Model
+// app.model(require('./models/example'));
+
+// 4. Router
+app.router(require('./router'));
+
+// 5. Start
 app.start('#root');
-
-
-
-
-
-// app.model(require("./models/category"));
-
-// // 2. Plugins
-// // app.use({});
-
-// // 3. Model
-// // app.model(require('./models/example'));
-
-// // 4. Router
-// app.router(require('./router'));
-
-// // 5. Start
-// app.start('#root');

@@ -1,21 +1,38 @@
-import React,{PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
-class Category extends React.Component{
-    constructor(props){
+class Category extends React.Component {
+    constructor(props) {
         super(props);
+        this.state = {
+            current: null,
+        }
+        this.onchange = this.onchange.bind(this);
     }
 
-    onchange(){
 
+    onchange(category) {
+        this.setState({
+            current: category,
+        });
     }
 
-    render(){
+    render() {
         return (
-            <div style={{backgroundColor:'#6e6568'}}>
-                <li>{this.props.categoryList}</li>
+            <div style={{ backgroundColor: '#6e6568' }}>
+                {
+                    this.props.categoryList.map((category) => (
+                        <li onClick={this.onchange(category)}>category.name</li>
+                    ))
+                }
             </div>
         );
     }
 }
+
+
+
+Category.propTypes = {
+    categoryList: PropTypes.array.isRequired
+};
 
 export default Category;

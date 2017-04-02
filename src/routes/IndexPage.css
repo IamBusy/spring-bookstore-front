@@ -27,3 +27,10 @@
 .list code {
   background: #f7f7f7;
 }
+
+#logo{
+  z-index:2;
+  box-shadow:0, -12px, 10px, rgba(0,0,0,.2);
+  background-color: white;
+}
+

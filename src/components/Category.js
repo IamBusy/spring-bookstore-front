@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 class Category extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             current: null,
         }
@@ -19,11 +20,14 @@ class Category extends React.Component {
     render() {
         return (
             <div style={{ backgroundColor: '#6e6568' }}>
+                <ul>
                 {
                     this.props.categoryList.map((category) => (
-                        <li key={category.name} onClick={()=>this.onchange(category)}>category.name</li>
+                        <li key={category.name} onClick={()=>this.onchange(category)}>{category.name}</li>
                     ))
                 }
+                </ul>
+                
             </div>
         );
     }

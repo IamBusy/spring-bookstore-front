@@ -22,10 +22,20 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
+function request(url, options) {
+
+  options.headers = {...options.headers,...{'Authorization': 'Bearer ' + auth.getToken()}};
+
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
     .then(data => ({ data }))
     .catch(err => ({ err }));
+}
+
+export default {
+  get:  (url,options)=>request(url,{...options,method:"get"}),
+  post: (url,options)=>request(url,{...options,method:"post"}),
+  put:  (url,options)=>request(url,{...options,method:"put"}),
+  delete:(url,options)=>request(url,{...options,method:"delete"}),
 }

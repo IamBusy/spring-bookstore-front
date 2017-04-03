@@ -1,5 +1,6 @@
 import fetch from 'dva/fetch';
 import auth from './auth';
+import config from '../config';
 
 function parseJSON(response) {
   return response.json();
@@ -25,6 +26,7 @@ function checkStatus(response) {
 function request(url, options) {
 
   options.headers = {...options.headers,...{'Authorization': 'Bearer ' + auth.getToken()}};
+  url += config.api+url;
 
   return fetch(url, options)
     .then(checkStatus)

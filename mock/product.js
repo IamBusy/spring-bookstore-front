@@ -35,7 +35,6 @@ products.data.map(product => {
 
 });
 
-console.log(productsData);
 
 export default productsData;
 

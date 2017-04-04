@@ -1,25 +1,24 @@
 import React from 'react';
-import { Input, Row, Col, Select, InputNumber, DatePicker, Button, } from 'antd';
+import { Input, Row, Col, Button } from 'antd';
 
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state={
-      key:null
+    this.state = {
+      key: null,
     };
     this.search = this.search.bind(this);
     this.change = this.change.bind(this);
   }
 
-  search(){
-    let {onSearch} = this.props;
+  search() {
+    const { onSearch } = this.props;
     onSearch();
   }
 
-  change(e){
+  change(e) {
     const { value } = e.target;
-    this.setState({key:value});
+    this.setState({ key: value });
   }
 
   render() {
@@ -31,7 +30,7 @@ export default class Search extends React.Component {
         </Row>
       </div>
     );
-
   }
+
 }
 

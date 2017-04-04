@@ -1,43 +1,47 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
-import Category from '../components/Category';
 import {Row,Col,Layout,Carousel,Input} from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
-//const {Search} = Input;
 import Search from '../components/Search';
+import TopBar from '../components/TopBar';
+import ProductItem from '../components/ProductItem';
+import Category from '../components/Category';
+import {recommendationSelector} from '../models/product/selectors';
 
 
-let categories = [
-  {name:1},
-  {name:2},
-  {name:3}
-];
 
-function IndexPage() {
+
+
+function IndexPage({ user, categories,recommendation }) {
+  const categoryChange = (category)=>{
+    console.log(category);
+  };
+
   return (
     <div>
       <Layout>
-        <Header>
+        <Header style={{backgroundColor:'#ececec',paddingLeft:0,paddingRight:0}}>
+          <TopBar user={user} />
 
         </Header>
         <Content>
           <Layout style={{marginLeft:20,marginRight:20}}>
-            <img style={{backgroundColor:"white",width:"100%",position:"fixed",width:200,top:0,left:20}} 
-                  src="//misc.360buyimg.com/mtd/pc/index/home/images/logo.v2.png"></img>
+            {/*<img style={{backgroundColor:"white",width:"100%",position:"fixed",width:200,top:0,left:20}}
+                  src="//misc.360buyimg.com/mtd/pc/index/home/images/logo.v2.png"></img>*/}
 
             <Content style={{marginTop:10}}>
               <Layout>
 
                 <Row style={{marginLeft:210,marginTop:20,marginBottom:20}}>
-                  <Col span={10} offset={4}>
+                  <Col span={12} offset={4}>
                     <Search  placeholder="input search text"  onSearch={value => console.log(value)}/>
                   </Col>
                 </Row>
 
                 <Layout style={{marginTop:10}}>
-                  <Sider style={{marginRight:10}}>
-                    <Category categoryList={categories}></Category>
+                  <Sider style={{marginRight:10,backgroundColor:'#404040'}}>
+                    <Category categoryList={categories} onChange={categoryChange} ></Category>
                   </Sider>
 
                   <Content>
@@ -48,13 +52,19 @@ function IndexPage() {
                     </Carousel>
                   </Content>
                 </Layout>
-                <Footer>footer</Footer>
+                <Footer style={{paddingLeft:0,paddingRight:0}}>
+                  <Row gutter={24}>
+                    {
+                      recommendation.map(product => (
+                        <Col span={4} key={product.id}>
+                          <ProductItem  product={product}></ProductItem>
+                        </Col>
+                      ))
+                    }
+                  </Row>
+                </Footer>
               </Layout>
 
-      
-              
-              
-              
             </Content>
           </Layout>
         </Content>
@@ -64,7 +74,15 @@ function IndexPage() {
   );
 }
 
-IndexPage.propTypes = {
-};
 
-export default connect()(IndexPage);
+function mapStateToProps(state, ownProps) {
+  return {
+    user:{
+      isLoggedIn: false,
+    },
+    categories: state.category.lists,
+    recommendation: recommendationSelector(state, ownProps),
+  };
+}
+
+export default connect(mapStateToProps)(IndexPage);

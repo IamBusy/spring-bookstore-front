@@ -9,7 +9,7 @@ const products = Mock.mock({
     'id|+1':1,
     'categoryId|1-14': 1,
     'price|10-99.1-2': 1,
-    'cover': () => Random.image('240x400'),
+    'cover': () => Random.image('360x400'),
     'name': () => Random.cword(3,10),
     'author': () => Random.first(),
     'publisher': () => Random.cword('交通出版社机械工业新华',4,7),
@@ -26,7 +26,7 @@ products.data.map(product => {
     productsData[categroyKey]=[product];
 
   let recommendKey = 'GET /api/recommendation';
-  (productsData[recommendKey] && Math.floor(Math.random()*10) > 4 && productsData[recommendKey].length<10)?
+  (productsData[recommendKey]  && productsData[recommendKey].length<10)?
     productsData[recommendKey].push(product):
     productsData[recommendKey]=[product];
 

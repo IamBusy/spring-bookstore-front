@@ -11,4 +11,7 @@ export function itemSelector(state, ownProps) {
   };
 }
 
+export function recommendationSelector(state, ownProps) {
+  return state.product.recommend.slice(0,6);
+}
 

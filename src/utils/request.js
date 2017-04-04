@@ -26,12 +26,13 @@ function checkStatus(response) {
 function request(url, options) {
 
   options.headers = {...options.headers,...{'Authorization': 'Bearer ' + auth.getToken()}};
-  url += config.api+url;
+  //url = config.api+url;
+  url = 'api'+url;
 
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then(data => ({ data }))
+    .then(data => ( data.data ))
     .catch(err => ({ err }));
 }
 

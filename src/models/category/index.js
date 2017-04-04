@@ -25,13 +25,14 @@ export default {
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      history.listen(() => {
-        let categories = getLocalStorage('categoryList');
-        dispatch({ type: 'fetchCategoryList'});
-        if (! categories) {
-          dispatch({ type: 'fetchCategoryList'});
-        }
-      });
+      dispatch({ type: 'fetchCategoryList'});
+
+      // history.listen(() => {
+      //   let categories = getLocalStorage('categoryList');
+      //   if (! categories) {
+      //     dispatch({ type: 'fetchCategoryList'});
+      //   }
+      // });
     },
   },
 };

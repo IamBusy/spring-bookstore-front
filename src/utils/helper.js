@@ -3,7 +3,12 @@
  */
 
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  try {
+    JSON.parse(localStorage.getItem(key));
+  }
+  catch(e) {
+    return null;
+  }
 }
 
 export function setLocalStorage(key,value) {

@@ -32,7 +32,7 @@ function request(url, options) {
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then(data => ( data.data ))
+    .then(data => ( data.data?data.data:data ))
     .catch(err => ({ err }));
 }
 

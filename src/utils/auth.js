@@ -5,6 +5,7 @@ class auth{
     this.userCache = localStorage;
     this.cacheKey = 'authentication';
     this.getToken = this.getToken.bind(this);
+    this.setToken = this.setToken.bind(this);
 
   }
 
@@ -13,13 +14,13 @@ class auth{
   }
 
   setToken(t,exp){
-    userCache[cacheKey] = JSON.stringify({
+    this.userCache[this.cacheKey] = JSON.stringify({
       token: t,
       expired_in: exp
     });
 
-    token = t;
-    expired_in = exp;
+    this.token = t;
+    this.expired_in = exp;
 
     return true;
   }

@@ -2,6 +2,32 @@ import fetch from 'dva/fetch';
 import auth from './auth';
 import config from '../config';
 
+function convert(obj) {
+  let query = '',
+    name, value, fullSubName, subName, subValue, innerObj, i;
+  for (name in obj) {
+    value = obj[name];
+    if (value instanceof Array) {
+      for (i = 0; i < value.length; ++i) {
+        subValue = value[i];
+        fullSubName = name + '[' + i + ']';
+        innerObj = {};
+        innerObj[fullSubName] = subValue;
+        query += param(innerObj) + '&';
+      }
+    } else if (value instanceof Object) {
+      for (subName in value) {
+        subValue = value[subName];
+        fullSubName = name + '[' + subName + ']';
+        innerObj = {};
+        innerObj[fullSubName] = subValue;
+        query += param(innerObj) + '&';
+      }
+    } else if (value !== undefined && value !== null) query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+  }
+  return query.length ? query.substr(0, query.length - 1) : query;
+}
+
 function parseJSON(response) {
   return response.json();
 }
@@ -25,9 +51,14 @@ function checkStatus(response) {
  */
 function request(url, options) {
 
-  options.headers = {...options.headers,...{'Authorization': 'Bearer ' + auth.getToken()}};
-  //url = config.api+url;
+  let headers = {
+    'Authorization': 'Bearer ' + auth.getToken()
+  };
+
   url = 'api'+url;
+
+  options = { ...options, headers, body: JSON.stringify(options.body) };
+  console.log(options);
 
   return fetch(url, options)
     .then(checkStatus)
@@ -37,8 +68,8 @@ function request(url, options) {
 }
 
 export default {
-  get:  (url,options)=>request(url,{...options,method:"get"}),
-  post: (url,options)=>request(url,{...options,method:"post"}),
-  put:  (url,options)=>request(url,{...options,method:"put"}),
-  delete:(url,options)=>request(url,{...options,method:"delete"}),
+  get:  (url,data)=>request(url,{ body:(data),method:"get"}),
+  post: (url,data)=>request(url,{ body:(data),method:"post"}),
+  put:  (url,data)=>request(url,{ body:(data),method:"put"}),
+  delete:(url,data)=>request(url,{body:(data),method:"delete"}),
 }

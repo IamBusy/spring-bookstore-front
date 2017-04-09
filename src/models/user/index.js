@@ -1,8 +1,9 @@
 /**
  * Created by william on 05/04/2017.
  */
-import { siginin, signup, getUserInfo } from '../../services/user';
+import userService, { signin, signup, getUserInfo } from '../../services/user';
 import auth from '../../utils/auth';
+import { getLocalStorage, setLocalStorage } from '../../utils/helper';
 
 export default {
   namespace: 'user',
@@ -23,19 +24,13 @@ export default {
     },
 
     'sign/success' (state, action) {
-      return {...state, ...action.payload, signup: true, errorMsg: null, isLoggedIn: true };
+      return {...state, ...action.payload, errorMsg: null, isLoggedIn: true };
     },
 
-    info(state, { payload }){
+    saveInfo(state, { payload }) {
       const {name, photo} = payload;
-      return {
-        ...state,
-        userInfo:{
-          name,photo
-        },
-      }
-
-    }
+      return { ...state, userInfo: { name,photo } };
+    },
   },
   effects: {
     * signup({payload}, { put, call }) {
@@ -45,7 +40,7 @@ export default {
       });
 
       const userInfo = yield call(signup, username, password);
-
+      console.log(userInfo);
       if (userInfo.message) {
         yield put({
           type: 'sign/error',
@@ -55,7 +50,7 @@ export default {
         auth.setToken(userInfo.token,userInfo.expired_in);
         yield put({
           type: 'sign/success',
-          payload: {username, password, userInfo},
+          payload: {username, password},
         });
         callback();
       }
@@ -66,13 +61,12 @@ export default {
     },
 
     * signin({payload}, { put, call }) {
-      const {username, password} = payload;
+      const { username, password, callback } = payload;
       yield put({
         type: 'sign/start',
       });
-
       const userInfo = yield call(signin, username, password);
-
+      console.log('after call signin');
       if (userInfo.message) {
         yield put({
           type: 'sign/error',
@@ -82,8 +76,9 @@ export default {
         auth.setToken(userInfo.token,userInfo.expired_in);
         yield put({
           type: 'sign/success',
-          payload: {username, password, userInfo},
+          payload: {username, password},
         });
+        callback()
       }
 
       yield put({
@@ -91,14 +86,23 @@ export default {
       });
     },
 
-    * info({payload}, {call, put}){
+    * 'sign/success'({payload}, { call, put }) {
       const user = yield call(getUserInfo);
+      console.log(user);
+      setLocalStorage('userInfo',user);
       yield put({
-        type: ''
+        type: 'saveInfo',
+        payload: user,
       })
     }
   },
 
   subscriptions: {
+    setup({dispatch}){
+      let user = getLocalStorage('userInfo');
+      if(user){
+        dispatch({ type: 'saveInfo', payload: user });
+      }
+    }
   },
 }

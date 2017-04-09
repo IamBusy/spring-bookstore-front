@@ -2,17 +2,24 @@
  * Created by william on 04/04/2017.
  */
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { routeTo } from '../utils/helper';
 const FormItem = Form.Item;
-
 
 
 
 class SigninForm extends React.Component {
   handleSubmit = (e) => {
+    const {dispatch,form} =  this.props;
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    const callback = ()=>{
+      
+    }
+    form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        dispatch({type:'user/signin',payload: {
+          username: form.getFieldValue('userName'),
+          password: form.getFieldValue('password'),
+          callback: () => (routeTo(this.props.redirect))}});
       }
     });
   }

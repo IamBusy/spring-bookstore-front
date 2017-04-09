@@ -10,16 +10,26 @@ import SignLayout from '../components/SignLayout';
 
 
 
-function SigninPage() {
+function SigninPage({ dispatch, user }) {
   return (
     <SignLayout>
-      <SigninForm></SigninForm>
+      <SigninForm dispatch={dispatch} user={user} redirect="/"></SigninForm>
     </SignLayout>
   );
 }
 
-function mapStateToProps() {
-  return {};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(_actions, dispatch),
+  };
+}
+
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
 }
 
 export default connect(mapStateToProps)(SigninPage);

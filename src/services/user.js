@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-export function siginin(username, password) {
+export function signin(username, password) {
   return request.post('/signin',{ username, password });
 }
 
@@ -9,5 +9,5 @@ export function signup(username, password) {
 }
 
 export function getUserInfo(){
-  return request.get('users/info');
+  return request.get('/users/info');
 }

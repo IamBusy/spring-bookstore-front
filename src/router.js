@@ -4,11 +4,15 @@ import IndexPage from './routes/IndexPage';
 import SigninPage from "./routes/SigninPage.js";
 
 
+import SignupPage from "./routes/SignupPage.js";
+
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Route path="/" component={IndexPage} />
       <Route path="/signin" component={SigninPage} />
+      <Route path="/Signup" component={SignupPage} />
     </Router>
   );
 }

@@ -13,16 +13,23 @@ import {recommendationSelector} from '../models/product/selectors';
 
 
 
-function IndexPage({ user, categories,recommendation }) {
+function IndexPage({ user, categories,recommendation,dispatch }) {
   const categoryChange = (category)=>{
     console.log(category);
   };
+
+  console.log(user);
+
+  setTimeout(function(){
+    console.log(user);
+  },1000)
 
   return (
     <div>
       <Layout>
         <Header style={{backgroundColor:'#ececec',paddingLeft:0,paddingRight:0}}>
-          <TopBar user={user} />
+          <TopBar {...user} />
+          
 
         </Header>
         <Content>
@@ -68,7 +75,9 @@ function IndexPage({ user, categories,recommendation }) {
             </Content>
           </Layout>
         </Content>
-        <Footer>footer</Footer>
+        <Footer style={{backgroundColor:'#404040',textAlign:'center',color:'white'}}>
+          Copyright © 2017 Bookstore Inc. 保留所有权利。京公网安备 11010802022978号   |   公共事务邮箱 gr@bookstore.com 商务合作邮箱 bdinchina@bookstore.com
+        </Footer>
       </Layout>
     </div>
   );
@@ -78,7 +87,8 @@ function IndexPage({ user, categories,recommendation }) {
 function mapStateToProps(state, ownProps) {
   return {
     user:{
-      isLoggedIn: false,
+      isLoggedIn: state.user.isLoggedIn,
+      ...state.user.userInfo
     },
     categories: state.category.lists,
     recommendation: recommendationSelector(state, ownProps),

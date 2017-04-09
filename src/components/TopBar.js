@@ -1,47 +1,52 @@
 import React from 'react';
-import {Menu, Icon } from 'antd';
+import { Menu, Icon, Row, Col, Dropdown } from 'antd';
+import { Link } from 'dva/router';
+import style from './TopBar.less';
 
-function TopBar(user) {
+function TopBar({ isLoggedIn, name, photo }) {
+  console.log(isLoggedIn);
 
-  const { name, photo, isLoggedIn } = user;
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <Link to="/account">我的账户</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/order">我的订单</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
 
   return (
-    <div >
+    <Row className={style.topBar}>
       {
         isLoggedIn &&
         (
-          <Menu
-            mode="horizontal"
-            theme="dark"
-          >
-            <Menu.Item key="mail">
-              <Icon type="user"/>{name}
-            </Menu.Item>
-            <Menu.Item key="app">
-              <Icon type="appstore"/>Navigation Two
-            </Menu.Item>
-          </Menu>
+          < div >
+            <Col span={2} className={style.photo}>
+              <img src={photo} />
+            </Col>
+            <Col span={2} push={1}>
+              <Dropdown overlay={menu}>
+                <a className="ant-dropdown-link" href="#">
+                  {name} <Icon type="down" />
+                </a>
+              </Dropdown>
+
+            </Col>
+          </div>
         )
       }
       {
-
-        !isLoggedIn&&(
-          <Menu
-            mode="horizontal"
-            theme="dark"
-          >
-            <Menu.Item key="signin">
-              立即登录
-            </Menu.Item>
-          </Menu>
+        !isLoggedIn && (
+          <Col span={4} style={{paddingLeft: '20px'}}>
+          <Link to="/signin">立即登录</Link>
+          </Col>
+          
         )
       }
-
-
-
-
-
-    </div>
+    </Row>
   );
 }
 

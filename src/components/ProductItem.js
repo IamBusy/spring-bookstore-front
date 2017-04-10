@@ -8,9 +8,9 @@ import { Row, Col } from 'antd';
 function ProductItem({product, style}) {
 
   return (
-    <div style={{...style,width:'100%'}}>
+    <div style={{...style,width:'100%',padding:'0px,10px,10px,10px'}}>
       <Row>
-        <img src={product.cover} style={{height:150,width:'100%'}}/>
+        <img src={product.cover} style={{height:150}}/>
       </Row>
       <Row  >
         <font style={{color:'red',fontSize:20}}>¥{product.price}</font>

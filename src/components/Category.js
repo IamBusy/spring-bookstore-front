@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Menu, Icon } from 'antd';
+import { Link } from 'dva/router';
 
 class Category extends React.Component {
   constructor(props) {
@@ -13,11 +14,11 @@ class Category extends React.Component {
 
 
   onchange(category) {
-    const { onChange } = this.props;
+    //const { onChange } = this.props;
     this.setState({
       current: category,
     });
-    onChange(category);
+    //onChange(category);
   }
 
   render() {
@@ -26,7 +27,7 @@ class Category extends React.Component {
         <Menu
           theme="dark"
           style={{ background: null }}
-          onClick={this.onchange}
+          
         >
           {
             this.props.categoryList.map(category => (
@@ -34,7 +35,9 @@ class Category extends React.Component {
                 {category.icon &&
                 <Icon type={category.icon} />
                 }
-                {category.name}
+                <Link to={`categories/${category.id}`}>{category.name}</Link>
+
+                
               </Menu.Item>
             ))
           }

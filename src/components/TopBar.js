@@ -14,6 +14,9 @@ function TopBar({ isLoggedIn, name, photo }) {
       <Menu.Item>
         <Link to="/order">我的订单</Link>
       </Menu.Item>
+      <Menu.Item>
+        <Link to="/signin">退出登陆</Link>
+      </Menu.Item>
     </Menu>
   );
 
@@ -27,7 +30,7 @@ function TopBar({ isLoggedIn, name, photo }) {
             <Col span={2} className={style.photo}>
               <img src={photo} />
             </Col>
-            <Col span={2} push={1}>
+            <Col span={2}>
               <Dropdown overlay={menu}>
                 <a className="ant-dropdown-link" href="#">
                   {name} <Icon type="down" />

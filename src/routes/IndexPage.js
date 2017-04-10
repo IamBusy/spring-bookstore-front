@@ -18,12 +18,6 @@ function IndexPage({ user, categories,recommendation,dispatch }) {
     console.log(category);
   };
 
-  console.log(user);
-
-  setTimeout(function(){
-    console.log(user);
-  },1000)
-
   return (
     <div>
       <Layout>

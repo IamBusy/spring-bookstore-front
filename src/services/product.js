@@ -3,11 +3,8 @@
  */
 import request from '../utils/request';
 
-export function fecthByCategory(categoryId, limit, offset) {
-  return request.get(`/categories/${categoryId}/products`,{
-    limit: limit,
-    offset: offset
-  });
+export function fetchByCategory(categoryId) {
+  return request.get(`/categories/${categoryId}/products`);
 }
 
 export function fetchBySearch(key, limit, offset) {

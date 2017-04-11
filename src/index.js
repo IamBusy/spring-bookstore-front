@@ -80,6 +80,7 @@ app.start('#root');*/
 app.model(require("./models/category"));
 app.model(require("./models/product"));
 app.model(require("./models/user"));
+app.model(require("./models/cart"));
 
 // 2. Plugins
 // app.use({});

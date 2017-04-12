@@ -10,6 +10,9 @@ import SignupPage from "./routes/SignupPage.js";
 import ListPage from "./routes/ListPage.js";
 
 
+import DetailPage from "./routes/DetailPage.js";
+
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -18,6 +21,7 @@ function RouterConfig({ history }) {
       <Route path="/Signup" component={SignupPage} />
       <Route path="/categories/:categoryId" component={ListPage} />
       <Route path="/search/:searchKey" component={ListPage} />
+      <Route path="/products/:productId" component={DetailPage} />
     </Router>
   );
 }

@@ -13,6 +13,7 @@ export default {
         add(state, { payload }) {
             const { product, quantity } = payload;
             product.quantity = quantity;
+            console.log(payload);
             return { ...state, products: {...state.products, [product.id]: product} };
         },
         remove(state, { payload }) {

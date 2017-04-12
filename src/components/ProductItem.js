@@ -4,13 +4,14 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'dva/router';
 import { Row, Col } from 'antd';
+import { routeTo } from '../utils/helper';
 
 function ProductItem({product, style}) {
 
   return (
     <div style={{...style,width:'100%',padding:'0px,10px,10px,10px'}}>
       <Row>
-        <img src={product.cover} style={{height:150}}/>
+        <img src={product.cover} style={{height:150}} onClick={()=>routeTo(`/products/${product.id}`)} />
       </Row>
       <Row  >
         <font style={{color:'red',fontSize:20}}>¥{product.price}</font>

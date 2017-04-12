@@ -12,7 +12,7 @@ function BaseLayout(props) {
         <Header style={{backgroundColor:'#ececec',paddingLeft:0,paddingRight:0}}>
           <TopBar {...user} />
         </Header>
-        <Content>
+        <Content style={{ marginLeft:20, marginRight: 20}}>
           {props.children}
         </Content>
         <Footer style={{backgroundColor:'#404040',textAlign:'center',color:'white'}}>

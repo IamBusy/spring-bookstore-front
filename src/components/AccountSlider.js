@@ -12,7 +12,7 @@ function AccountSlider(props) {
         defaultOpenKeys={['sub1']}
         mode="inline"
       >
-        <Menu.Item key="information"><Link to="/account">个人信息</Link></Menu.Item>
+        <Menu.Item key="account"><Link to="/account">个人信息</Link></Menu.Item>
         <Menu.Item key="order"><Link to="/order">我的订单</Link></Menu.Item>
         <Menu.Item key="setting"><Link to="/">设置中心</Link></Menu.Item>
 

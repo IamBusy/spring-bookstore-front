@@ -19,6 +19,9 @@ import CartPage from "./routes/CartPage.js";
 import AccountPage from "./routes/AccountPage.js";
 
 
+import OrderPage from "./routes/OrderPage.js";
+
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -30,6 +33,7 @@ function RouterConfig({ history }) {
       <Route path="/products/:productId" component={DetailPage} />
       <Route path="/cart" component={CartPage} />
       <Route path="/account" component={AccountPage} />
+      <Route path="/order" component={OrderPage} />
     </Router>
   );
 }

@@ -13,3 +13,7 @@ export function createOrder(products, pwd=null) {
     pwd: pwd,
   });
 }
+
+export function fetchOrders() {
+  return request.get('/orders');
+}

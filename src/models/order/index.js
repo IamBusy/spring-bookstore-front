@@ -15,6 +15,7 @@ export default {
   reducers: {
     saveOrders(state,{ payload}) {
       const { orders } = payload;
+      orders.map( order => order.key = order.id);
       return {...state, lists:orders};
     },
 

@@ -16,6 +16,7 @@ export function paginationInfo(state, ownProps){
 }
 
 export function paginationOrders(state, ownProps){
+  return state.order.lists;
   let currentPage = state.order.currentPage;
   let itemsPerPage = state.order.itemsPerPage;
   let limit = Math.min((currentPage+1)*itemsPerPage,state.order.lists.length);

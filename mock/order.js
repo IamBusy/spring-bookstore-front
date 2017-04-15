@@ -5,7 +5,7 @@ const Mock = require('mockjs');
 const Random = Mock.Random;
 
 import ProductsMock from './product';
-import { random, randomItem } from '../src/utils/random';
+const MyRandom = require('./helper');
 
 export default {
   'GET /api/orders': Mock.mock({
@@ -13,7 +13,7 @@ export default {
       'id|+1' : 1,
       'total|10-99.1-2': 1,
       'createdAt': ()=>Random.date(),
-      'products': ()=>randomItem(ProductsMock.data,random(1,10)),
+      'products': ()=>MyRandom.randomItem(ProductsMock.data,MyRandom.random(1,10)),
     }]
   }),
 }

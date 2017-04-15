@@ -37,7 +37,7 @@ products.data.map(product => {
 
 export default {
   api: productsData,
-  data: products,
+  data: products.data,
 }
 //export default productsData;
 

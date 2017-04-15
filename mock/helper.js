@@ -1,14 +1,14 @@
 /**
  * Created by william on 15/04/2017.
  */
-
 /**
  * @param min
  * @param max
  * @returns {*}
  * 返回min-max之间随机整数
  */
-export function random(min,max) {
+
+exports.random = function(min,max) {
   return Math.round(Math.random()*(max-min))+min;
 }
 
@@ -18,10 +18,11 @@ export function random(min,max) {
  * @returns {*}
  * 返回从targets数组中随机取得quantity个元素数组
  */
-export function randomItem(targets,quantity) {
+exports.randomItem = function(targets,quantity) {
   if(targets.length <= quantity) {
     return targets;
   }
+  console.log(targets);
 
   let result = [];
   let possiblity = quantity/targets.length;

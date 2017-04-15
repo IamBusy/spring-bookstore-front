@@ -64,7 +64,8 @@ export default {
       yield put({ type: 'saveRecommendation', payload: products })
     },
 
-    * fetchById({ payload: id }, { put, call, select }) {
+    * fetchById({ payload }, { put, call, select }) {
+      const { id } =payload;
       const items = yield select(state => state.product.itemById);
       if (!items[id]) {
         const product = yield call(fetchById, id);

@@ -4,6 +4,6 @@ import user from './mock/user';
 
 export default {
   ...category,
-  ...product,
+  ...product.api,
   ...user,
 };

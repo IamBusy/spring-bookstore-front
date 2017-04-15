@@ -35,8 +35,11 @@ products.data.map(product => {
 
 });
 
-
-export default productsData;
+export default {
+  api: productsData,
+  data: products,
+}
+//export default productsData;
 
 
 

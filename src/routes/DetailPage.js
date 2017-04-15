@@ -36,7 +36,7 @@ function DetailPage(props) {
           <Menu
         onClick={addToCart}
         mode="horizontal"
-        style={{background:null}}
+        style={{background: '#ececec'}}
       >
         <SubMenu title={<span><Icon type="setting" />分类</span>}>
           <Category {...props.category} />

@@ -25,8 +25,7 @@ export default {
     },
     effects: {
         * fetchCategoryList(action, { call, put }) {
-            const categories = yield call(fetchList);
-            yield put({ type: 'saveList', payload: categories });
+
         }
     },
     subscriptions: {

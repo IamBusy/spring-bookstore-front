@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Link } from 'dva/router';
 import styles from './DetailPage.css';
 import Category from '../components/Category';
-
+import Search from '../components/Search';
 import MyLayout from '../components/Layout';
 import { Row, Col, InputNumber, Button, notification, message, Menu, Icon } from 'antd';
 const { SubMenu, MenuItemGroup } = Menu;
@@ -32,9 +32,11 @@ function DetailPage(props) {
 
   return (
     <MyLayout {...props}>
+      <Row type="flex" justify="center" style={{paddingTop:20,paddingBottom:20}}>
+        <Search/>
+      </Row>
       <Row >
           <Menu
-        onClick={addToCart}
         mode="horizontal"
         style={{background: '#ececec'}}
       >
@@ -48,7 +50,7 @@ function DetailPage(props) {
 
       </Menu>
       </Row>
-      
+
       <Row style={{ paddingTop: 50 }}>
         <Col md={{ span: 8 }} xs={{ span: 12 }}>
           <img style={{ width: '100%', borderRadius: 20 }} src="http://pic.uumeitu.com/2015/0518/风情万种蕾丝内衣性感美女大尺度诱惑写真/11.jpg" />

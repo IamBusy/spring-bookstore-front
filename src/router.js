@@ -16,6 +16,9 @@ import DetailPage from "./routes/DetailPage.js";
 import CartPage from "./routes/CartPage.js";
 
 
+import AccountPage from "./routes/AccountPage.js";
+
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -26,6 +29,7 @@ function RouterConfig({ history }) {
       <Route path="/search/:searchKey" component={ListPage} />
       <Route path="/products/:productId" component={DetailPage} />
       <Route path="/cart" component={CartPage} />
+      <Route path="/account" component={AccountPage} />
     </Router>
   );
 }

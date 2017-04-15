@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import MyLayout from '../components/Layout';
-
+import Promption from '../components/Promption';
 import { Table, InputNumber, Progress, Button, Row, Col } from 'antd';
 import { list } from '../models/cart/selectors';
 import { selectCreateInfo } from '../models/order/selectors';
@@ -10,7 +10,7 @@ import { selectCreateInfo } from '../models/order/selectors';
 
 function CartPage(props) {
 
-  const { products, createInfo, dispatch } = props;
+  const { products, createInfo, dispatch, user } = props;
 
   let productsChosen = [];
 
@@ -72,16 +72,25 @@ function CartPage(props) {
 
   return (
     <MyLayout {...props}>
-      <Row><Table pagination={{total: products.length, defaultPageSize:10}} rowSelection={rowSelection} columns={columns} dataSource={products} /></Row>
-      <Row type="flex" justify="center" style={{paddingTop:30,paddingBottom:30}}>
-        {
-          createInfo.isCreating?
-            <Button type="primary" loading >提交订单</Button>
-          :
-            <Button type="primary" onClick={submitOrder}>提交订单</Button>
-        }
+      {
+        user.isLoggedIn?
+          <div>
+            <Row><Table pagination={{total: products.length, defaultPageSize:10}} rowSelection={rowSelection} columns={columns} dataSource={products} /></Row>
+            <Row type="flex" justify="center" style={{paddingTop:30,paddingBottom:30}}>
+              {
+                createInfo.isCreating?
+                  <Button type="primary" loading >提交订单</Button>
+                  :
+                  <Button type="primary" onClick={submitOrder}>提交订单</Button>
+              }
 
-      </Row>
+            </Row>
+          </div>
+          :
+          <Promption />
+      }
+
+
 
 
 

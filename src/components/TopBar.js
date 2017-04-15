@@ -15,6 +15,9 @@ function TopBar({ isLoggedIn, name, photo }) {
         <Link to="/order">我的订单</Link>
       </Menu.Item>
       <Menu.Item>
+        <Link to="/cart">我的购物车</Link>
+      </Menu.Item>
+      <Menu.Item>
         <Link to="/signin">退出登陆</Link>
       </Menu.Item>
     </Menu>
@@ -46,7 +49,7 @@ function TopBar({ isLoggedIn, name, photo }) {
           <Col span={4} style={{paddingLeft: '20px'}}>
           <Link to="/signin">立即登录</Link>
           </Col>
-          
+
         )
       }
     </Row>

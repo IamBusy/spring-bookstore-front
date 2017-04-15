@@ -81,7 +81,7 @@ app.model(require("./models/category"));
 app.model(require("./models/product"));
 app.model(require("./models/user"));
 app.model(require("./models/cart"));
-
+app.model(require("./models/order"));
 // 2. Plugins
 // app.use({});
 

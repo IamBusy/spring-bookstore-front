@@ -7,11 +7,8 @@ export function fetchByCategory(categoryId) {
   return request.get(`/categories/${categoryId}/products`);
 }
 
-export function fetchBySearch(key, limit, offset) {
-  return request.get(`/search/${key}`,{
-    limit: limit,
-    offset: offset
-  });
+export function fetchBySearch(key) {
+  return request.get(`/search/${key}`);
 }
 
 export function fetchById(id) {

@@ -8,10 +8,7 @@ import TopBar from '../components/TopBar';
 import ProductItem from '../components/ProductItem';
 import Category from '../components/Category';
 import {recommendationSelector} from '../models/product/selectors';
-
-
-
-
+import Chatroom from '../components/Chatroom';
 
 function IndexPage({ user, categories,recommendation,dispatch }) {
   const categoryChange = (category)=>{
@@ -23,7 +20,7 @@ function IndexPage({ user, categories,recommendation,dispatch }) {
       <Layout>
         <Header style={{backgroundColor:'#ececec',paddingLeft:0,paddingRight:0}}>
           <TopBar {...user} />
-          
+
 
         </Header>
         <Content>
@@ -73,6 +70,7 @@ function IndexPage({ user, categories,recommendation,dispatch }) {
           Copyright © 2017 Bookstore Inc. 保留所有权利。京公网安备 11010802022978号   |   公共事务邮箱 gr@bookstore.com 商务合作邮箱 bdinchina@bookstore.com
         </Footer>
       </Layout>
+      <Chatroom></Chatroom>
     </div>
   );
 }

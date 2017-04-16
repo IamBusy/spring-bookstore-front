@@ -47,7 +47,7 @@ class Chatroom extends Component {
     return (
       <div style={{position:"fixed",bottom:'20px',right:'20px',width:'250px'}}>
         <Row>
-          <Card style={{maxHeight:'250px',overflowY:'scroll'}} title="Chatroom">
+          <Card style={{maxHeight:'250px',overflowY:'scroll'}} >
             {
               this.state.conversations.map( (conservation,idx) => <Conversation key={idx} content={conservation}/>)
             }

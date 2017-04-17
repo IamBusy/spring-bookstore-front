@@ -21,8 +21,9 @@ function OrderPage(props) {
           record.products.map(product=>(
             <Row key={product.id} type="flex" align="middle">
               <Col span={4}><img src={product.cover } style={{width:'100%'}}/></Col>
-              <Col span={10}><Link to={`/products/${product.id}`}>{product.name}</Link></Col>
-              <Col span={10}>{product.price}</Col>
+              <Col span={8}><Link to={`/products/${product.id}`}>{product.name}</Link></Col>
+              <Col span={8}>{product.price}</Col>
+              <Col span={4}>{product.quantity}</Col>
             </Row>
           ))
         }

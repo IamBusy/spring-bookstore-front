@@ -28,8 +28,8 @@ export default {
     },
 
     saveInfo(state, { payload }) {
-      const {name, photo} = payload;
-      return { ...state, userInfo: { name,photo } };
+      const {username, photo} = payload;
+      return { ...state, userInfo: { name:username, photo } };
     },
   },
   effects: {
@@ -41,13 +41,13 @@ export default {
 
       const userInfo = yield call(signup, username, password);
       console.log(userInfo);
-      if (userInfo.message) {
+      if (!userInfo) {
         yield put({
           type: 'sign/error',
           payload: userInfo.message,
         });
       } else {
-        auth.setToken(userInfo.token,userInfo.expired_in);
+        yield call(auth.setToken,userInfo.token,userInfo.expired_in);
         yield put({
           type: 'sign/success',
           payload: {username, password},
@@ -67,13 +67,14 @@ export default {
       });
       const userInfo = yield call(signin, username, password);
       console.log('after call signin');
-      if (userInfo.message) {
+      if (!userInfo) {
         yield put({
           type: 'sign/error',
           payload: userInfo.message,
         });
       } else {
-        auth.setToken(userInfo.token,userInfo.expired_in);
+        //auth.setToken(userInfo.token,userInfo.expired_in);
+        yield call(auth.setToken,userInfo.token,userInfo.expired_in);
         yield put({
           type: 'sign/success',
           payload: {username, password},

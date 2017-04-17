@@ -14,8 +14,13 @@ export default {
   },
   reducers: {
     saveOrders(state,{ payload}) {
-      const { orders } = payload;
-      orders.map( order => order.key = order.id);
+      let { orders } = payload;
+      if(orders) {
+        orders.map( order => order.key = order.id);
+      }else {
+        orders = [];
+      }
+
       return {...state, lists:orders};
     },
 
@@ -26,6 +31,8 @@ export default {
     'create/end'(state){
       return {...state, isCreating: false}
     }
+
+
 
   },
   effects: {
@@ -42,6 +49,7 @@ export default {
       const orders = yield select(state => state.order.lists);
       orders.push(orderInfo);
       yield put({type:'saveOrders',payload:orders});
+      yield put({type:'cart/destroy'});
     }
   },
   subscriptions: {

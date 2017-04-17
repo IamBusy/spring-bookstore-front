@@ -53,7 +53,7 @@ function DetailPage(props) {
 
       <Row style={{ paddingTop: 50 }}>
         <Col md={{ span: 8 }} xs={{ span: 12 }}>
-          <img style={{ width: '100%', borderRadius: 20 }} src="http://pic.uumeitu.com/2015/0518/风情万种蕾丝内衣性感美女大尺度诱惑写真/11.jpg" />
+          <img style={{ width: '100%', borderRadius: 20 }} src={product.cover} />
         </Col>
         <Col md={{ span: 16 }} xs={{ span: 12 }} style={{ paddingLeft: 50 }}>
           <Row style={{ fontSize: 36 }}>

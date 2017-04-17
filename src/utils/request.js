@@ -52,13 +52,15 @@ function checkStatus(response) {
 function request(url, options) {
 
   let headers = {
-    'Authorization': 'Bearer ' + auth.getToken()
+    'Authorization': 'Bearer ' + auth.getToken(),
+    "Content-Type": "application/json",
   };
 
-  url = 'api'+url;
+  //url = 'api'+url;
+  url = config.api + url;
 
   options = { ...options, headers, body: JSON.stringify(options.body) };
-  console.log(options);
+  //console.log(options);
 
   return fetch(url, options)
     .then(checkStatus)

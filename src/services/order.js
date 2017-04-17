@@ -5,12 +5,11 @@ import request from '../utils/request';
 
 export function createOrder(products, pwd=null) {
   let pds = [];
-  products.map( product => {
-    pds.push(product.id);
+  products.map( productId => {
+    pds.push(productId);
   });
   return request.post('/orders', {
     products: pds,
-    pwd: pwd,
   });
 }
 

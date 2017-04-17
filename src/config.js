@@ -3,7 +3,7 @@
  */
 
 export default {
-  api:    '//localhost:8000/api',
+  api:    '//localhost:8090',
   app:    '//localhost:8000',
   chatroomSocket: 'ws://localhost:8090/chatroom',
   version:'0.0.1',

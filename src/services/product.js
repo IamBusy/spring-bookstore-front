@@ -16,5 +16,5 @@ export function fetchById(id) {
 }
 
 export function fetchRecommendation() {
-  return request.get(`/recommendation`);
+  return request.get(`/products/recommendation`);
 }

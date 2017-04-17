@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Link } from 'dva/router';
 import MyLayout from '../components/Layout';
 import Promption from '../components/Promption';
-import { Table, InputNumber, Progress, Button, Row, Col } from 'antd';
+import { Table, InputNumber, Progress, Button, Row, Col, notification } from 'antd';
 import { list } from '../models/cart/selectors';
 import { selectCreateInfo } from '../models/order/selectors';
 
@@ -61,7 +61,18 @@ function CartPage(props) {
 
   function submitOrder() {
     console.log('submitOrder');
-    dispatch({type:'order/createOrder', payload: {products:productsChosen}});
+    let pds = [];
+    products.map( product => {
+      productsChosen.map( p => {
+        if(p == product.id)
+          pds.push(product);
+      });
+    });
+    dispatch({type:'order/createOrder', payload: {products:pds}});
+    notification.open({
+      message: '订单提交成功',
+      description: '请前往我的订单，查看与跟踪后续订单状态。',
+    });
 
   }
 

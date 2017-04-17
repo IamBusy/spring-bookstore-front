@@ -5,31 +5,34 @@ import pathToRegexp from 'path-to-regexp';
 import { getLocalStorage, setLocalStorage } from '../../utils/helper';
 
 export default {
-    namespace: 'cart',
-    state: {
-        products: {},
+  namespace: 'cart',
+  state: {
+    products: {},
+  },
+  reducers: {
+    add(state, { payload }) {
+      const { product, quantity } = payload;
+      product.quantity = quantity;
+      console.log(payload);
+      return { ...state, products: {...state.products, [product.id]: product} };
     },
-    reducers: {
-        add(state, { payload }) {
-            const { product, quantity } = payload;
-            product.quantity = quantity;
-            console.log(payload);
-            return { ...state, products: {...state.products, [product.id]: product} };
-        },
-        remove(state, { payload }) {
-            const { productId } = payload;
-            let products = state.products;
-            delete products[productId];
-            return {...state, products};
-        }
+    remove(state, { payload }) {
+      const { productId } = payload;
+      let products = state.products;
+      delete products[productId];
+      return {...state, products};
     },
-    effects: {
-        * fetchCategoryList(action, { call, put }) {
+    destroy(state){
+      return {...state,products:{}};
+    }
+  },
+  effects: {
+    * fetchCategoryList(action, { call, put }) {
 
-        }
+    }
+  },
+  subscriptions: {
+    setup({ dispatch, history }) {
     },
-    subscriptions: {
-        setup({ dispatch, history }) {
-        },
-    },
+  },
 };

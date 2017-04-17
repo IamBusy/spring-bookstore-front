@@ -31,16 +31,16 @@ class auth{
 
       //this is the first time to access this service,
       // try to retire the token from cache
-      if (expired_in == 0) {
-        var obj = JSON.parse(userCache.getItem(cacheKey));
+      if (this.expired_in == 0) {
+        var obj = JSON.parse(this.userCache.getItem(this.cacheKey));
         if (obj && obj.expired_in > now) {
-          token = obj.token;
-          expired_in = obj.expired_in;
-          return token;
+          this.token = obj.token;
+          this.expired_in = obj.expired_in;
+          return this.token;
         }
       } else {
-        if (expired_in > now) {
-          return token;
+        if (this.expired_in > now) {
+          return this.token;
         }
       }
       return null;

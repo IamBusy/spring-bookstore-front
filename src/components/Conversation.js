@@ -1,10 +1,11 @@
 import React from 'react';
+import { Tag } from 'antd';
 
 function Conversation(props) {
   return (
-    <div >
+    <Tag >
       {props.content}
-    </div>
+    </Tag>
   );
 }
 

@@ -5,6 +5,7 @@ import {Row, Col, Menu, Icon} from 'antd';
 import {Link} from 'dva/router';
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
+import Intl from '../utils/intl';
 
 const particlesParam = {
   particles: {
@@ -37,14 +38,14 @@ export default class SignLayout extends Component{
               <Icon type="book" />BookStore
             </Row>
             <Row style={{paddingTop:20}}>
-              <h2 style={{textAlign:'center'}}>Share knowledge and experience</h2>
+              <h2 style={{textAlign:'center'}}>{Intl.get('slogan')}</h2>
             </Row>
             <Row type="flex" justify="center">
               <Menu  mode="horizontal">
                 <Menu.Item key="signin">
-                  <Link to='/signin'>Signin</Link>
+                  <Link to='/signin'>{Intl.get('signin')}</Link>
                 </Menu.Item>
-                <Menu.Item key="signup"><Link to='/signup'>Signup</Link></Menu.Item>
+                <Menu.Item key="signup"><Link to='/signup'>{Intl.get('signup')}</Link></Menu.Item>
               </Menu>
             </Row>
             <Row style={{paddingTop:20}}>

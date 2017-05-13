@@ -3,7 +3,9 @@
  */
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { routeTo } from '../utils/helper';
+import Intl from '../utils/intl';
 const FormItem = Form.Item;
+
 
 
 
@@ -12,7 +14,7 @@ class SigninForm extends React.Component {
     const {dispatch,form} =  this.props;
     e.preventDefault();
     const callback = ()=>{
-      
+
     }
     form.validateFields((err, values) => {
       if (!err) {
@@ -31,14 +33,14 @@ class SigninForm extends React.Component {
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
-            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
+            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={Intl.get('username')} />
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
-            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
+            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={Intl.get('username')} />
           )}
         </FormItem>
         <FormItem>
@@ -46,11 +48,11 @@ class SigninForm extends React.Component {
             valuePropName: 'checked',
             initialValue: true,
           })(
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>{Intl.get('remember_me')}</Checkbox>
           )}
-          <a style={{float:'right'}}>Forgot password</a>
+          <a style={{float:'right'}}>{Intl.get('forget')}</a>
           <Button type="primary" htmlType="submit" style={{width:'100%'}}>
-            Log in
+            {Intl.get('login')}
           </Button>
         </FormItem>
         <FormItem>

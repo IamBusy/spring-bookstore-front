@@ -13,7 +13,7 @@ export default class Search extends React.Component {
 
   search() {
     const { onSearch } = this.props;
-    onSearch();
+    onSearch(this.state.key);
   }
 
   change(e) {

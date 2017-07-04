@@ -16,13 +16,16 @@ function ListPage(props) {
   let { currentPage, itemsPerPage, total }  = paginationInfo;
   const pageChange = (page) => {
     dispatch({type:'product/changePage', payload: {page}});
-  }
+  };
+  const search = (key) => {
+    dispatch({type:'product/search', payload:{key}});
+  };
   return (
     <div className={styles.normal}>
       <MyLayout {...props} >
         <Row justify="center">
           <Col span={12} offset={6} style={{ marginBottom: 20, marginTop: 20 }}>
-            <Search placeholder="input search text" onSearch={value => console.log(value)} />
+            <Search placeholder="input search text" onSearch={value => search(value)} />
           </Col>
         </Row>
         <Row style={{paddingBottom:50}}>

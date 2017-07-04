@@ -8,7 +8,7 @@ export function fetchByCategory(categoryId) {
 }
 
 export function fetchBySearch(key) {
-  return request.get(`/search/${key}`);
+  return request.get(`/products/search/${key}`);
 }
 
 export function fetchById(id) {

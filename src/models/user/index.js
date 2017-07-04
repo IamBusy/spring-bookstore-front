@@ -67,7 +67,7 @@ export default {
       });
       const userInfo = yield call(signin, username, password);
       console.log('after call signin');
-      if (!userInfo) {
+      if (!userInfo.token) {
         yield put({
           type: 'sign/error',
           payload: userInfo.message,

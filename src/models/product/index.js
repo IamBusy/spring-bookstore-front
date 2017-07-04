@@ -29,8 +29,13 @@ export default {
       return { ...state, itemById: { ...state.itemById, [product.id]: product } }
     },
 
-    saveProducts(state, { payload }) {
-
+    saveProductBySearchKey(state, { payload }) {
+      const { products } = payload;
+      let itemById = state.itemById;
+      products.map(product => {
+        itemById[product.id] = product;
+      });
+      return { ...state, products };
     },
 
     saveProductByCategory(state, { payload }) {
@@ -46,7 +51,8 @@ export default {
 
     changePage(state, { payload }) {
       return { ...state, currentPage: payload.page - 1 };
-    }
+    },
+
   },
   effects: {
     * fetchProductsByCategory({ payload }, { put, call, select }) {
@@ -71,6 +77,14 @@ export default {
         const product = yield call(fetchById, id);
         put({ type: 'saveById', payload: product });
       }
+    },
+
+    * search({payload},{call, put}) {
+      const {key} = payload;
+      console.log(key);
+      const products = yield  call(fetchBySearch, key);
+      yield put({ type: 'saveProductBySearchKey', payload: { products } });
+
     }
 
   },

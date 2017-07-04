@@ -9,10 +9,18 @@ import ProductItem from '../components/ProductItem';
 import Category from '../components/Category';
 import {recommendationSelector} from '../models/product/selectors';
 import Chatroom from '../components/Chatroom';
+import { routeTo } from '../utils/helper';
 
 function IndexPage({ user, categories,recommendation,dispatch }) {
   const categoryChange = (category)=>{
     console.log(category);
+  };
+
+  //let { dispatch } = props;
+
+  const search = key => {
+    dispatch({type:'product/search', payload:{key}});
+    routeTo('/categories/1');
   };
 
   return (
@@ -33,7 +41,7 @@ function IndexPage({ user, categories,recommendation,dispatch }) {
 
                 <Row style={{marginLeft:210,marginTop:20,marginBottom:20}}>
                   <Col span={12} offset={4}>
-                    <Search  placeholder="input search text"  onSearch={value => console.log(value)}/>
+                    <Search  placeholder="input search text"  onSearch={value => search(value)}/>
                   </Col>
                 </Row>
 
